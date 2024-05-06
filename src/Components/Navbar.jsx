@@ -3,13 +3,14 @@ import React from 'react'
 const Navbar = () => {
   return (
 <>
-  <nav className='bg-blue-600 text-white'
+  <nav className='bg-slate-500 text-white flex justify-between items-center px-10 h-10'
   >
+    <div className="logo font-bold">PassCode</div>
   <ul>
-<li>
-    <a href='#'>Home</a>
-    <a href='#'>About</a>
-    <a href='#'>FeedBack</a>
+<li className='flex gap-4'>
+    <a className='hover:bg-green-300 font-bold' href='/'>Home</a>
+    <a className='hover:bg-green-300 font-bold' href='#'>About</a>
+    <a className='hover:bg-green-300 font-bold' href='#'>FeedBack</a>
 </li>
   </ul>
   </nav> 

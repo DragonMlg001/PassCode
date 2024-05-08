@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* directives */
 @layer components {
   .my-borders {
-    @apply border-4 border-green-400 hover:border-green-500 rounded-md  text-black font-medium px-1;
+    @apply border-4 border-green-400 w-full hover:border-green-500 rounded-md  text-black font-medium px-1;
   }
 }

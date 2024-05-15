@@ -42,7 +42,7 @@ const Manager = () => {
 
   return (
     <>
-      <div className="absolute top-0 z-[-2] h-screen w-screen bg-[#2f3247] bg-[radial-gradient(#ffffff_1px,#000000_1px)] bg-[size:60px_60px]"></div>
+       <div className="absolute top-0 z-[-2] h-screen w-screen bg-[#2f3247] bg-[radial-gradient(#ffffff_1px,#000000_1px)] bg-[size:60px_60px]"></div> 
 
       <div className="mx-auto max-w-4xl">
         <h1 className="text-white text-center p-1 font-extrabold text-4xl">

@@ -1,8 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { ToastContainer, Zoom, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Manager = () => {
   const ref = useRef();
+  const passwordRef = useRef();
 
   const [form, setForm] = useState({ site: "", username: "", password: "" });
 
@@ -16,7 +19,6 @@ const Manager = () => {
   }, []);
 
   const showPassword = () => {
-    alert("SHow password clicked");
     // changing icons using ref
     // if(ref.current.src.includes("icons/eye2.png")){
     //   ref.current.src="icons/eye1.png";
@@ -26,8 +28,10 @@ const Manager = () => {
 
     // using  ternary operator
     ref.current.src.includes("icons/eye2.png")
-      ? (ref.current.src = "icons/eye1.png")
-      : (ref.current.src = "icons/eye2.png");
+      ? (ref.current.src = "icons/eye1.png" ,
+        passwordRef.current.type = "password")
+      : (ref.current.src = "icons/eye2.png" ,
+        passwordRef.current.type = "text");
   };
 
   const savePassword = () => {
@@ -40,8 +44,26 @@ const Manager = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const copyText = (text)=>{
+    navigator.clipboard.writeText(text)
+    toast.success('Copied to Clipboard', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
+      transition: Zoom,
+      });
+  };
+
   return (
     <>
+    <ToastContainer position="top-center"autoClose={1000} hideProgressBar newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false}
+draggable={false} pauseOnHover={false} theme="colored" transition= "zoom"/>
+
        <div className="absolute top-0 z-[-2] h-screen w-screen bg-[#2f3247] bg-[radial-gradient(#ffffff_1px,#000000_1px)] bg-[size:60px_60px]"></div> 
 
       <div className="mx-auto max-w-4xl">
@@ -83,7 +105,8 @@ const Manager = () => {
             {/* PassWord Data */}
             <input
               className="mx-5 my-borders "
-              type="text"
+              type="password"
+              ref={passwordRef}
               placeholder="Password"
               name="password"
               value={form.password}
@@ -135,9 +158,24 @@ const Manager = () => {
               {passwordArray.map((item)=>{
                 return(
                 <tr key={uuidv4()}>
-                <td className="text-center border-2 border-gray-700 w-32 p-3 "><a href={item.site} target="_blank" >{item.site}</a></td>
-                <td className="text-center border-2 border-gray-700 w-32 p-3 ">{item.username}</td>
-                <td className="text-center border-2 border-gray-700 w-32 p-3 ">{item.password}</td>
+                <td className="text-center border-b-4 border-r-2 border-black p-3 flex-col justify-center items-center"><a href={item.site} target="_blank" >{item.site}</a>
+                <div className="size-6 cursor-pointer" onClick={()=>{copyText(item.site)}}>
+                <lord-icon src="https://cdn.lordicon.com/depeqmsz.json" trigger="click"
+                style={{"width":"25px", "height":"25px", "paddingTop":"3px", "paddingLeft":"3px"}}></lord-icon>
+                </div>
+                </td>
+                <td className="text-center border-b-4 border-r-2 border-black flex-col   justify-center items-center p-3 ">{item.username}
+                <div className="size-6 cursor-pointer" onClick={()=>{copyText(item.username)}}>
+                <lord-icon src="https://cdn.lordicon.com/depeqmsz.json" trigger="click"
+                style={{"width":"25px", "height":"25px", "paddingTop":"3px", "paddingLeft":"3px"}}></lord-icon>
+                </div>
+                </td>
+                <td className="text-center border-b-4 border-r-2 border-black flex-col   justify-center items-center p-3 ">{item.password}
+                <div className="size-6 cursor-pointer" onClick={()=>{copyText(item.password)}}>
+                <lord-icon src="https://cdn.lordicon.com/depeqmsz.json" trigger="click"
+                style={{"width":"25px", "height":"25px", "paddingTop":"3px", "paddingLeft":"3px"}}></lord-icon>
+                </div>
+                </td>
               </tr>
             )})}
             </tbody>

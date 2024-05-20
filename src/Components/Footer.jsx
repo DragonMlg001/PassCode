@@ -7,6 +7,7 @@ const Footer = () => {
     <h1>PassC0de</h1>
 <h2>Your Password and link Saver Locally</h2>
 <h2 className='mx-20'>Coptrights*insert shrug here*</h2>
+<a href="https://lordicon.com/">Icons by Lordicon.com</a>
     </div>
     </>
   )

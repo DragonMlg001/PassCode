@@ -35,24 +35,79 @@ const Manager = () => {
   };
 
   const savePassword = () => {
+    if(form.site.length>3 && form.username.length>3 && form.password.length>3){
 
-    toast.success("Password Saved", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "light",
-      transition: Zoom,
-    });
+      
+      toast.success("Password Saved", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Zoom,
+      });
+      
+      setPasswordArray([...passwordArray, {...form, id: uuidv4()}]);
+      localStorage.setItem("passwords", JSON.stringify([...passwordArray, {...form, id: uuidv4()}]));
+      //setForm({site:"",username:"",password:""});
+    }else{
+      if(form.site.length<3 && form.password.length<3 && form.username<3){
+        toast.success("Can't Save Empty Fields", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
 
-    setPasswordArray([...passwordArray, {...form, id: uuidv4()}]);
-    localStorage.setItem("passwords", JSON.stringify([...passwordArray, {...form, id: uuidv4()}]));
-    setForm({site:"",username:"",password:""});
-  };  
-
+      }else if(form.site.length<3){
+        toast.success("Website link needs to be higher then 3 (Three) characters", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
+      }else if(form.username<3){
+        toast.success("Username needs to be higher then 3 (Three) characters", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
+      }else{
+        toast.success("Password needs to be higher then 3 (Three) characters", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
+      }
+    
+    }
+    };  
+    
   const editPassword = (id) => {
     toast.success("Editing Password", {
       position: "top-center",
@@ -71,7 +126,6 @@ const Manager = () => {
   };
 
   const deletePassword = (id) => {
-    console.log("deleting password with id", id)
     
 let c = confirm("Do you want to deleted this Data?")
 
@@ -140,9 +194,9 @@ if(c){
         transition="zoom"
       />
 
-      <div className="absolute top-0 z-[-2] h-screen w-screen bg-[#2f3247] bg-[radial-gradient(#ffffff_1px,#000000_1px)] bg-[size:60px_60px]"></div>
+      <div className="absolute top-0 z-[-2] h-screen w-95vh bg-[#2f3247] bg-[radial-gradient(#ffffff_1px,#000000_1px)] bg-[size:60px_60px]"></div>
 
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-4xl ">
         <h1 className="text-white text-center p-1 font-extrabold text-4xl">
           <span className="text-green-600">Pass</span>
           <span className="text-white">Code</span>

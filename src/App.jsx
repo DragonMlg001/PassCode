@@ -10,7 +10,9 @@ function App() {
 
   return (
     <>
+    <div className="bg-[#2f3247] bg-[radial-gradient(#ffffff_1px,#000000_1px)] bg-[size:60px_60px] ">
       <Manager/>
+      </div>
       <Footer/>
     </>
   )
